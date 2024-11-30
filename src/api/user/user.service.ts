@@ -19,6 +19,14 @@ export const getOneUser = async (userId: string) => {
   return user;
 };
 
+export const getOneUserEmail = async (email: string) => {
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    throw new NotFoundError(`User with email ${email} not found`);
+  }
+  return user;
+};
+
 export const createUser = async (userData: IUser) => {
   const { email, password } = userData;
 

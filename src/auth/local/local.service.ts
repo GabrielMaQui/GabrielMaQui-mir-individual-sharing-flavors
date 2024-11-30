@@ -3,8 +3,8 @@ import { signToken } from '../auth.service';
 
 export function createAuthResponse(input: IUser) {
   const payload = {
-    id: input.id,
     email: input.email,
+    name: input.first_name,
   };
 
   const token = signToken(payload);
@@ -14,7 +14,6 @@ export function createAuthResponse(input: IUser) {
     avatar: input.photo_url,
     role: input.role,
     email: input.email,
-    id: input.id,
   };
 
   return {
