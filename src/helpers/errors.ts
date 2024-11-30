@@ -19,3 +19,10 @@ export class BadRequestError extends AppError {
     super(message, 400);
   }
 }
+
+export const extractErrorMessage = (error: unknown): string => {
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return 'An unknown error occurred';
+};
