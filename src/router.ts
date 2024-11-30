@@ -1,5 +1,6 @@
 import type { Application } from 'express';
 
+import chatRouter from './api/chat';
 import commentRouter from './api/comments';
 import messageRouter from './api/message';
 import recipeRouter from './api/recipe';
@@ -11,7 +12,8 @@ function routes(app: Application): void {
   app.use('/auth/local', localAuthRouter);
   app.use('/api/recipe', recipeRouter);
   app.use('/api/comment', commentRouter);
-  app.use('api/message', messageRouter);
+  app.use('/api/message', messageRouter);
+  app.use('/api/chat', chatRouter);
 }
 
 export default routes;
