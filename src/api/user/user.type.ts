@@ -1,25 +1,17 @@
-import mongoose from 'mongoose';
+import type mongoose from 'mongoose';
 
-const userSchema = {
-  first_name: String,
-  last_name: String,
-  email: String,
-  password: String,
-  phone_number: String,
-  description: String,
-  photo_url: {
-    type: String,
-    default:
-      'https://res.cloudinary.com/hotelapp/image/upload/v1701376634/user_photos/lkgygchjqf4gqjow6wqj.webp',
-  },
-  favorites: { type: Array, default: [] },
-  role: String,
-};
+export interface IUser {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  phone_number?: string;
+  description?: string;
+  photo_url?: string;
+  favorites?: string[]; // Suponiendo que es un array de strings
+  role: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
 
-const User = mongoose.model(
-  'User',
-  new mongoose.Schema(userSchema, { timestamps: true }),
-  'user',
-);
-
-export default User;
+export interface IUserDocument extends IUser, mongoose.Document {}
