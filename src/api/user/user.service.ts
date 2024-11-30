@@ -1,38 +1,43 @@
 import bcrypt from 'bcrypt';
+import { BadRequestError, NotFoundError } from '../../helpers/errors';
 import User from './user.model';
 import type { IUser } from './user.type';
 
 export const getAllUsers = async () => {
-  return await User.find();
+  const users = await User.find();
+  if (!users.length) {
+    throw new NotFoundError('No users found');
+  }
+  return users;
 };
 
-export const getOneUserService = async (user_id: string) => {
-  return await User.findById(user_id);
+export const getOneUser = async (userId: string) => {
+  const user = await User.findById(userId);
+  if (!user) {
+    throw new NotFoundError(`User with ID ${userId} not found`);
+  }
+  return user;
 };
 
-export const createUserService = async (userData: IUser) => {
+export const createUser = async (userData: IUser) => {
   const { email, password } = userData;
 
-  // Verificar si el usuario ya existe
-  const userExists = await User.findOne({ email });
-  if (userExists) {
-    throw new Error('User already exists');
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new BadRequestError('User already exists');
   }
 
-  // Encriptar la contraseña
-  const passwordHash = await bcrypt.hash(password, 15);
-
-  // Crear y guardar el usuario
-  const newUser = new User({ ...userData, password: passwordHash });
+  const hashedPassword = await bcrypt.hash(password, 15);
+  const newUser = new User({ ...userData, password: hashedPassword });
   return await newUser.save();
 };
 
-export const updateUserService = async (user_id: string, userData: IUser) => {
-  const userUpdated = await User.findByIdAndUpdate(user_id, userData, {
+export const updateUser = async (userId: string, userData: IUser) => {
+  const updatedUser = await User.findByIdAndUpdate(userId, userData, {
     new: true,
   });
-  if (!userUpdated) {
-    throw new Error('User not found');
+  if (!updatedUser) {
+    throw new NotFoundError(`User with ID ${userId} not found`);
   }
-  return userUpdated;
+  return updatedUser;
 };
