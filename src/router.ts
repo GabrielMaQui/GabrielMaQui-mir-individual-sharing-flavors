@@ -14,6 +14,7 @@ function routes(app: Application): void {
   app.use('/api/comment', commentRouter);
   app.use('/api/message', messageRouter);
   app.use('/api/chat', chatRouter);
+  
 }
 
 export default routes;
