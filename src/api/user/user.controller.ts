@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { AppError } from '../../helpers/errors';
+
 import {
   createUser,
   getAllUsers,
