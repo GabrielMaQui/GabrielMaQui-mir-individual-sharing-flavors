@@ -1,3 +1,4 @@
+import { getOneUserEmail } from '../user/user.service';
 import { Chat, type ChatDocument } from './chat.model';
 
 export const findChatByMembers = async (
@@ -20,7 +21,8 @@ export const createChat = async (
 export const getChatsByUserId = async (
   userId: string,
 ): Promise<ChatDocument[]> => {
-  return await Chat.find({ members: { $in: [userId] } });
+  const user = await getOneUserEmail(userId);
+  return await Chat.find({ members: { $in: [user.id] } });
 };
 
 export const getChatByMembers = async (
