@@ -23,8 +23,9 @@ export async function loginHandler(req: Request, res: Response) {
         });
       } else {
         const response = createAuthResponse(user);
+        const responseWithId = { ...response, _id: user.id };
 
-        res.json(response);
+        res.json(responseWithId);
       }
     }
   } catch (error) {

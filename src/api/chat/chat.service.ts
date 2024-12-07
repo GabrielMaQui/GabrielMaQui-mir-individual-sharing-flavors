@@ -21,8 +21,7 @@ export const createChat = async (
 export const getChatsByUserId = async (
   userId: string,
 ): Promise<ChatDocument[]> => {
-  const user = await getOneUserEmail(userId);
-  return await Chat.find({ members: { $in: [user.id] } });
+  return await Chat.find({ members: { $in: [userId] } });
 };
 
 export const getChatByMembers = async (
