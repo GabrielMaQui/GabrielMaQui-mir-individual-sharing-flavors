@@ -26,3 +26,4 @@ export const extractErrorMessage = (error: unknown): string => {
   }
   return 'An unknown error occurred';
 };
+

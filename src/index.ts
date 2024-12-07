@@ -5,6 +5,9 @@ import configExpress from './config/express';
 import routes from './router';
 import { setupSocketIO } from './sockets';
 
+
+
+
 //Levantamiento del express
 const app = express();
 const server = http.createServer(app);
@@ -16,8 +19,8 @@ routes(app);
 // Conexión con Mongo DB Atlas
 connectDB();
 
-// Configuración de Sockets
 setupSocketIO(server);
+
 
 //Puerto a ejecutar
 const PORT = 3000;
