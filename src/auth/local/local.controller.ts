@@ -23,8 +23,8 @@ export async function loginHandler(req: Request, res: Response) {
         });
       } else {
         const response = createAuthResponse(user);
-
-        res.json(response);
+        const responseWithId = { ...response, _id: user.id };
+        res.json(responseWithId);
       }
     }
   } catch (error) {

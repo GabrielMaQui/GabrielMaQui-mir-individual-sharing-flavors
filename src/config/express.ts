@@ -10,6 +10,7 @@ function configExpress(app: Application): void {
 
   //morgan
   app.use(morgan('dev'));
+
   //urlencoded
 }
 
