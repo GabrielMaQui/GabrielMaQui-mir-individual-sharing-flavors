@@ -12,7 +12,7 @@ const router = Router();
 router.get('/:id', getOneRecipeHandler);
 router.post('/', createRecipeHandler);
 router.get('/', getAllRecipesHandler);
-router.patch('/:id', updateRecipeHandler);
+router.patch('/:id', hasRole(['USER', 'ADMINISTRATOR']), updateRecipeHandler);
 router.delete('/:id', deleteRecipeHandler);
 
 export default router;
