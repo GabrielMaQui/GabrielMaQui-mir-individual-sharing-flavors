@@ -14,6 +14,7 @@ export function createAuthResponse(input: IUser) {
     avatar: input.photo_url,
     role: input.role,
     email: input.email,
+    favorites: input.favorites,
   };
 
   return {
