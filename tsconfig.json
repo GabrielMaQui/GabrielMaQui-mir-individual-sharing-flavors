@@ -4,7 +4,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "module": "Preserve",
+    "module": "commonjs",
     "moduleDetection": "force",
     "outDir": "./dist/",
     "resolveJsonModule": true,
@@ -13,5 +13,7 @@
     "strict": true,
     "target": "es2016"
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
