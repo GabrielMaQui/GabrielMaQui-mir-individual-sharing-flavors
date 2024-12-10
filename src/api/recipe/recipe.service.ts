@@ -1,7 +1,7 @@
 import { Recipe, type RecipeDocument } from './recipe.model';
 
 export const getAllRecipes = async (): Promise<RecipeDocument[]> => {
-  return await Recipe.find();
+  return await Recipe.find().sort({ createdAt: -1 });
 };
 
 export const getOneRecipe = async (

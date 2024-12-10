@@ -7,7 +7,7 @@ export const getAllComments = async (): Promise<CommentDocument[]> => {
 export const getCommentsByRecipeId = async (
   recipeId: string,
 ): Promise<CommentDocument[]> => {
-  return await Comment.find({ recipe_id: recipeId });
+  return await Comment.find({ recipe_id: recipeId }).sort({ createdAt: -1 });
 };
 
 export const createComment = async (
